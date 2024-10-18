@@ -1,0 +1,10 @@
+<ActionBar title="JEE Mains Topics"></ActionBar>
+
+<ListView [items]="topics" class="list-group">
+  <ng-template let-topic="item">
+    <GridLayout columns="*, auto" class="list-group-item" (tap)="onTopicTap(topic.id)">
+      <Label [text]="topic.name" col="0"></Label>
+      <Label text="&#xf054;" class="fas" col="1"></Label>
+    </GridLayout>
+  </ng-template>
+</ListView>

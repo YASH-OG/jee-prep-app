@@ -1,0 +1,18 @@
+<ActionBar [title]="'Flashcards - Topic ' + topicId">
+  <NavigationButton (tap)="routerExtensions.back()" android.systemIcon="ic_menu_back"></NavigationButton>
+</ActionBar>
+
+<GridLayout rows="*, auto, auto">
+  <StackLayout row="0" class="p-20">
+    <Label [text]="flashcards[currentIndex].question" class="h2 text-center" textWrap="true"></Label>
+    <Label [text]="flashcards[currentIndex].answer" class="p-10 text-center" [class.hidden]="!showAnswer" textWrap="true"></Label>
+    <Button text="Toggle Answer" (tap)="toggleAnswer()" class="btn btn-primary"></Button>
+  </StackLayout>
+  
+  <GridLayout row="1" columns="*, *" class="m-x-auto">
+    <Button text="Previous" (tap)="previousCard()" col="0" class="btn btn-outline"></Button>
+    <Button text="Next" (tap)="nextCard()" col="1" class="btn btn-outline"></Button>
+  </GridLayout>
+  
+  <Button row="2" text="Go to MCQs" (tap)="goToMCQ()" class="btn btn-success m-t-20"></Button>
+</GridLayout>

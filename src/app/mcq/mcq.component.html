@@ -1,0 +1,26 @@
+<ActionBar [title]="'MCQs - Topic ' + topicId">
+  <NavigationButton (tap)="routerExtensions.back()" android.systemIcon="ic_menu_back"></NavigationButton>
+</ActionBar>
+
+<ScrollView>
+  <StackLayout class="p-20">
+    <Label [text]="mcqs[currentIndex].question" class="h2" textWrap="true"></Label>
+    <StackLayout class="m-y-20">
+      <Button *ngFor="let option of mcqs[currentIndex].options; let i = index"
+              [text]="option"
+              (tap)="selectAnswer(i)"
+              [class.btn-primary]="selectedAnswer === i"
+              class="btn btn-outline m-y-10">
+      </Button>
+    </StackLayout>
+    <Button text="Submit" (tap)="submitAnswer()" class="btn btn-success" [isEnabled]="selectedAnswer !== null && !showResult"></Button>
+    <StackLayout *ngIf="showResult" class="m-t-20">
+      <Label [text]="selectedAnswer === mcqs[currentIndex].correctAnswer ? 'Correct!' : 'Incorrect. Try again.'"
+             [class.text-success]="selectedAnswer === mcqs[currentIndex].correctAnswer"
+             [class.text-danger]="selectedAnswer !== mcqs[currentIndex].correctAnswer"
+             class="h3 text-center">
+      </Label>
+      <Button text="Next Question" (tap)="nextQuestion()" class="btn btn-primary m-t-20"></Button>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>
